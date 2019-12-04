@@ -19,13 +19,13 @@ public class KafkabasicsApplication {
 		SpringApplication.run(KafkabasicsApplication.class, args);
 	}
 
-	@StreamListener(Processor.INPUT)
-	public void process(@Input(Processor.INPUT) KStream<String, WordCount> input) {
+	@StreamListener
+	public void process(@Input(Processor.INPUT) KStream<?, WordCount> input) {
 
 		System.out.println("in process of consumer..."+input);
 
 		input.foreach((w,c) -> {
-			System.out.println("word: " + w + " -> " + c);
+			System.out.println("VALUEEEE: " + w + " -> " + c);
 		});
 	}
 
